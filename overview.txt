@@ -1,0 +1,34 @@
+Threads
+
++ = produce
+- = receive
+
+Clock 
+-----------
+
+    +timer => Clock
+    +ClockSignals=> Clock, Factories
+
+
+Factories
+-----------
+
+    +produce => Factories
+    -ClockSignals
+    +FactorySignal => Factories, Store
+
+Store
+-----------
+
+    -FactorySignals
+    -CustomerSignals
+    +StoreSignals => Store, Customers
+        *Signal Contains Message with Store Name, Inventory
+
+
+Customers
+-----------
+
+    -StoreSignals
+    +CustomerSignals 
+        *Email response with how much to purchase
