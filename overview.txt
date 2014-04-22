@@ -13,9 +13,15 @@ Clock
 Factories
 -----------
 
-    +produce => Factories
+    +produce => Factories, Inventory
     -ClockSignals
-    +FactorySignal => Factories, Store
+    +FactorySignal => Factories, Inventory
+
+Inventory
+-----------
+    +StockUp => Stores
+        -StockUp Signals => Store
+
 
 Store
 -----------
