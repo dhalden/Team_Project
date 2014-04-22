@@ -28,8 +28,16 @@ public class Inventory {
 			this.notify(); 
 	}
 	
+	public synchronized void sell(int s){
+		currSupply -= s;
+	}
+	
 	public int getMax(){
 		return maxSupply;
+	}
+	
+	public int getSupply(){
+		return currSupply;
 	}
 	
 	public synchronized int getDiff(){
