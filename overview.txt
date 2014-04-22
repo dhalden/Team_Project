@@ -20,7 +20,7 @@ Factories
 Inventory
 -----------
     +StockUp => Stores
-        -StockUp Signals => Store
+        +StockUp Signals => Store
 
 
 Store
