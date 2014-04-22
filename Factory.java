@@ -8,53 +8,48 @@
  */
 public class Factory extends Thread
 {
-    public Clock() clock;
-    public int supply;
-    public int maxSupply;
-    //We are going to want an array of the 
+	public Inventory inv;
+	public Clock clock;
+	public int base;
+	//We are going to want an array of the 
 
-    public void Factory(Clock() tick, int max)
-    {
-        this.clock = tick;
-        this.maxSupply = max;
-        this.supply = 0;
-    }
-    
-    public void run()
-    {
-        //I'm just making these all "while(true)"s we can change them later
-        while(true)
-        {
-            synchronized(clock)
-            {
-                this.wait();
-            }
-            this.produce();
-            this.notifyStore();
-        }
+	public void Factory(Clock tick, Inventory i, int b)
+	{
+		this.clock = tick;
+		this.inv = i;
+		this.base = b;
+	}
 
-    }
+	public void run()
+	{
+		//I'm just making these all "while(true)"s we can change them later
+		while(true)
+		{
+			synchronized(clock)
+			{
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			inv.stockUp(produce());
+		}
+
+	}
 
 
-    public void produce()
-    {
-        //This should probably syncrhonized on a shared variable for the
-        //factories. For now each factory's supply will be synchronized on
-        //itself
-        synchronized(this)
-        {
-            if(supply < maxSupply)
-            {
-                supply++;
-            }
-        }
-    }
-    
-    //Maybe we want to make a group object that signals the store when it's
-    //ready instead of just sending a signal every time something is produced?
-    public synchronized void notifyStore()
-    {
-        notify();
-    }
-    
+	public int produce()
+	{
+		/*
+		 * producing some amount of goods.
+		 */
+		int r = 0;
+		synchronized(inv)
+		{
+			r = base+(int)(inv.getDiff()*Math.random()); //make sure r is not negative
+		}
+		return r;
+	}
 }

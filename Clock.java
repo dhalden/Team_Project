@@ -10,31 +10,29 @@
 
 public class Clock extends Thread
 {
-    public final int TICK = 1000;
+	public final int TICK = 1000;
 
-    //default clock with a TICK of 1 second
-    public void Clock()
-    {
-    }
+	//default clock with a TICK of 1 second
+	public Clock(){}
 
-    //Class cares only about itself.Every second it returns itself
-    public void run()
-    {
-        while(true) // We might want to make this something else?
-        {
-            synchronized(this)
-            {
-                try
-                {
-                this.sleep(TICK);
-                }
-                catch(InterruptedException e)
-                {
-                    System.out.println("Error: Interrupted Exception " + e);
-                }
-                this.notifyAll();
-            }   
-        }
-    }
+	//Class cares only about itself.Every second it returns itself
+	public void run()
+	{
+		while(true) // We might want to make this something else?
+		{
+			synchronized(this)
+			{
+				try
+				{
+					this.sleep(TICK);
+				}
+				catch(InterruptedException e)
+				{
+					System.out.println("Error: Interrupted Exception " + e);
+				}
+				this.notifyAll();
+			}   
+		}
+	}
 
 }

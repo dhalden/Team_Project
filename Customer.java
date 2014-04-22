@@ -1,4 +1,4 @@
-public class Customer extends Thread
-{
+
+public class Customer extends Thread{
 
 }
