@@ -21,7 +21,7 @@ public class Store extends Thread{
 				synchronized(inv)
 				{
 					try {
-						this.wait();
+						inv.wait();
 						
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block

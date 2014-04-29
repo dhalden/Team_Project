@@ -13,7 +13,7 @@ public class Factory extends Thread
 	public int base;
 	//We are going to want an array of the 
 
-	public void Factory(Clock tick, Inventory i, int b)
+	public Factory(Clock tick, Inventory i, int b)
 	{
 		this.clock = tick;
 		this.inv = i;

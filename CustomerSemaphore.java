@@ -12,12 +12,12 @@ public class CustomerSemaphore {
 	
 	public int fillOrder(){
 		int d = 0;
-	    if(cusDemand.getLength == 0){
+	    if(getLength() == 0){
             return 0;
         }
         else
         { 
-          //notify();
+          notify();
           synchronized(this)
           {
               d = cusDemand[start];
@@ -29,9 +29,9 @@ public class CustomerSemaphore {
 
     public synchronized boolean order(int d)
     {
-        if(cusDemand.getLength() != cusDemand.length)
+        if(getLength() != cusDemand.length)
         {
-            cusDemand[end] = d
+            cusDemand[end] = d;
             end = (end + 1) % cusDemand.length;
             return true;
         }  

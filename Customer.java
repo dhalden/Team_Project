@@ -23,7 +23,7 @@ public class Customer extends Thread{
                 {
                     try
                     {
-                        wait();
+                        cs.wait();
                     }
                     catch(InterruptedException e)
                     {
