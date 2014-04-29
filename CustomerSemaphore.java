@@ -10,9 +10,38 @@ public class CustomerSemaphore {
 		cusDemand = new int[c];//c is the number of customers;
 	}
 	
-	public int getNextCustomerDemand(){
+	public int fillOrder(){
 		int d = 0;
-		
-		return d;
+	    if(cusDemand.getLength == 0){
+            return 0;
+        }
+        else
+        { 
+          //notify();
+          synchronized(this)
+          {
+              d = cusDemand[start];
+              start  = (start + 1) % cusDemand.length;
+		      return d;
+          }
+        }
 	}
+
+    public synchronized boolean order(int d)
+    {
+        if(cusDemand.getLength() != cusDemand.length)
+        {
+            cusDemand[end] = d
+            end = (end + 1) % cusDemand.length;
+            return true;
+        }  
+        else
+        {
+            return false;
+        }
+    }
+
+    public synchronized int getLength(){
+        return ((end - start) % cusDemand.length) + 1;
+    }
 }

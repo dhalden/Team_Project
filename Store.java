@@ -32,7 +32,7 @@ public class Store extends Thread{
 			}
 			inv.sell(demand);
 			
-			demand = cs.getNextCustomerDemand();
+			demand = cs.fillOrder();
 		}
 	}
 }
