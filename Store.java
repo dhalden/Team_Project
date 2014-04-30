@@ -20,13 +20,12 @@ public class Store extends Thread{
 				{
 					try {
 					inv.wait();
-					
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-					
-					cs.sendEmail();
+						
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					this.sendEmail();
 				}
 			}
 			inv.sell(demand);

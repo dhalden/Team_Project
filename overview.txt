@@ -20,7 +20,7 @@ Factories
 Inventory
 -----------
     +StockUp => Stores
-        -StockUp Signals => Store
+        +StockUp Signals => Store
 
 
 Store
@@ -31,6 +31,12 @@ Store
     +StoreSignals => Store, Customers
         *Signal Contains Message with Store Name, Inventory
 
+
+CustomerSemaphore
+----------------------
+
+    -Takes in customer demand
+    +Tells the store how much demand is needed
 
 Customers
 -----------
