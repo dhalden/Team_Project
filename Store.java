@@ -10,9 +10,7 @@ public class Store extends Thread{
 		demand = 0;
 	}
 
-	public void sendEmail(){
-		this.notifyAll();
-	}
+	
 	
 	public void run(){
 		while(true){
@@ -21,18 +19,19 @@ public class Store extends Thread{
 				synchronized(inv)
 				{
 					try {
-						this.wait();
-						
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					this.sendEmail();
+					inv.wait();
+					
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					
+					cs.sendEmail();
 				}
 			}
 			inv.sell(demand);
 			
-			demand = cs.getNextCustomerDemand();
+			demand = cs.fillOrder();
 		}
 	}
 }

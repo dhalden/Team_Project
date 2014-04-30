@@ -20,18 +20,21 @@ public class Clock extends Thread
 	{
 		while(true) // We might want to make this something else?
 		{
+			try
+			{
+				this.sleep(TICK);
+			}
+			catch(InterruptedException e)
+			{
+				System.out.println("Error: Interrupted Exception " + e);
+			}
+			System.out.println("-----");
 			synchronized(this)
 			{
-				try
-				{
-					this.sleep(TICK);
-				}
-				catch(InterruptedException e)
-				{
-					System.out.println("Error: Interrupted Exception " + e);
-				}
-				this.notifyAll();
-			}   
+				
+				this.notify();
+			}  
+			
 		}
 	}
 

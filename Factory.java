@@ -13,7 +13,7 @@ public class Factory extends Thread
 	public int base;
 	//We are going to want an array of the 
 
-	public void Factory(Clock tick, Inventory i, int b)
+	public Factory(Clock tick, Inventory i, int b)
 	{
 		this.clock = tick;
 		this.inv = i;
@@ -28,7 +28,7 @@ public class Factory extends Thread
 			synchronized(clock)
 			{
 				try {
-					this.wait();
+					clock.wait();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -48,6 +48,8 @@ public class Factory extends Thread
 		synchronized(inv)
 		{
 			r = base+(int)(inv.getDiff()*Math.random()); //make sure r is not negative
+			System.out.println(this.getName()+" produces "+r);
+			System.out.println(inv.getSupply());
 		}
 		return r;
 	}
